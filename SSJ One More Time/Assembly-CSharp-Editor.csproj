@@ -679,6 +679,14 @@
       <Project>{2BCC6582-C603-7E63-4A81-22A196EB03BB}</Project>
       <Name>Assembly-CSharp</Name>
     </ProjectReference>
+    <ProjectReference Include="Unity.2D.Tilemap.Extras.Editor.csproj">
+      <Project>{E0912C5E-1C0E-8BE7-3FA5-1D2DA9E2E05A}</Project>
+      <Name>Unity.2D.Tilemap.Extras.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.2D.Tilemap.Extras.csproj">
+      <Project>{CD26088F-33F8-4857-5C53-D80E8ECFC8EF}</Project>
+      <Name>Unity.2D.Tilemap.Extras</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
