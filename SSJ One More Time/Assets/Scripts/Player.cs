@@ -9,9 +9,11 @@ public class Player : MonoBehaviour
 
     [SerializeField] float runSpeed = 5f;
     [SerializeField] float jumpSpeed = 5f;
+    [SerializeField] Vector2 startPosition;
 
     // State
-    bool isAlive = true;
+    [SerializeField] public bool isAlive = true;
+    [SerializeField] public int lives = 2;
 
     // Components
     Rigidbody2D myRigidBody;
@@ -29,6 +31,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        CheckIfDead();
         Run();
         Jump();
         FlipSprite();
@@ -59,6 +62,25 @@ public class Player : MonoBehaviour
         if (playerHasHorizontalSpeed)
         {
             transform.localScale = new Vector2(Mathf.Sign(myRigidBody.velocity.x), 1f);
+        }
+    }
+
+    private void CheckIfDead()
+    {
+        if (!isAlive)
+        {
+            lives -= 1;
+            if (lives >= 0)
+            {
+                isAlive = true;
+                GameObject body = GameObject.Find("Body");
+                Instantiate(body, transform.position, body.transform.rotation);
+                transform.position = startPosition;
+            }
+            else
+            {
+                Debug.Log("Fully dead");
+            }
         }
     }
 }

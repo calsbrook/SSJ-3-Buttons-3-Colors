@@ -53,6 +53,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\DeathCollider.cs" />
      <Compile Include="Assets\Scripts\Player.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>C:/Users/Cameron/My Games/SSJ-3-Buttons-3-Colors/SSJ One More Time/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
