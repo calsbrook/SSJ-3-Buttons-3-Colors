@@ -7,8 +7,8 @@ using UnityStandardAssets.CrossPlatformInput;
 public class Player : MonoBehaviour
 {
 
-    [SerializeField] float runSpeed = 5f;
-    [SerializeField] float jumpSpeed = 5f;
+    [SerializeField] float runSpeed = 10f;
+    [SerializeField] float jumpSpeed = 28f;
     [SerializeField] Vector2 startPosition;
 
     // State
@@ -49,7 +49,7 @@ public class Player : MonoBehaviour
 
     private void Jump()
     {
-        if (!myCollider2D.IsTouchingLayers(LayerMask.GetMask("Ground"))) { return; }
+        if (!myCollider2D.IsTouchingLayers(LayerMask.GetMask("Ground")) || Mathf.Round(myRigidBody.velocity.y) != 0) { return; }
         if (CrossPlatformInputManager.GetButtonDown("Jump"))
         {
             Vector2 jumpVelocityToAdd = new Vector2(0f, jumpSpeed);
