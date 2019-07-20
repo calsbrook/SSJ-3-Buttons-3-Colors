@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
+using TMPro;
 
 
 public class Player : MonoBehaviour
@@ -10,10 +11,12 @@ public class Player : MonoBehaviour
     [SerializeField] float runSpeed = 10f;
     [SerializeField] float jumpSpeed = 28f;
     [SerializeField] Vector2 startPosition;
+    [SerializeField] TextMeshProUGUI lifeText;
 
     // State
     [SerializeField] public bool isAlive = true;
-    [SerializeField] public int lives = 2;
+    [SerializeField] public int lifeCounterForLevel = 2;
+    public int lives;
 
     // Components
     Rigidbody2D myRigidBody;
@@ -26,6 +29,8 @@ public class Player : MonoBehaviour
         myRigidBody = GetComponent<Rigidbody2D>();
         myAnimator = GetComponent<Animator>();
         myCollider2D = GetComponent<Collider2D>();
+        lifeText.text = lives.ToString();
+        lives = lifeCounterForLevel;
     }
 
     // Update is called once per frame
@@ -70,17 +75,31 @@ public class Player : MonoBehaviour
         if (!isAlive)
         {
             lives -= 1;
+            myRigidBody.velocity = new Vector2(0f, 0f);
             if (lives >= 0)
             {
                 isAlive = true;
                 GameObject body = GameObject.Find("Body");
-                Instantiate(body, transform.position, body.transform.rotation);
+                var NewBody = Instantiate(body, transform.position, body.transform.rotation);
+                NewBody.gameObject.tag = "Bodies";
                 transform.position = startPosition;
             }
             else
             {
-                Debug.Log("Fully dead");
+                transform.position = startPosition;
+                lives = lifeCounterForLevel;
+                isAlive = true;
+                GameObject[] bodies = GameObject.FindGameObjectsWithTag("Bodies");
+                foreach (GameObject body in bodies)
+                {
+                    GameObject.Destroy(body);
+                }
             }
+            lifeText.text = lives.ToString();
+        }
+        else
+        {
+            return;
         }
     }
 }

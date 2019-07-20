@@ -157,5 +157,7 @@ MonoBehaviour:
   runSpeed: 10
   jumpSpeed: 28
   startPosition: {x: -7.51, y: 4.51}
+  lifeText: {fileID: 0}
   isAlive: 1
-  lives: 2
+  lifeCounterForLevel: 1
+  lives: 1
